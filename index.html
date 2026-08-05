@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CCNA研修前ミニテスト</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f0f2f5;
+  color: #1a1a2e;
+  min-height: 100vh;
+}
+
+header {
+  background: #1a1a2e;
+  color: #fff;
+  padding: 18px 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.3);
+}
+header h1 { font-size: 1.15rem; font-weight: 700; }
+.header-sub { font-size: 0.8rem; color: #aab; margin-top: 4px; }
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 16px 60px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.08);
+  padding: 24px 20px;
+  margin-bottom: 16px;
+}
+
+.page-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 10px;
+}
+.page-desc {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+.section-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #3f51b5;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin-bottom: 14px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #e0e3ef;
+}
+
+.test-list { display: flex; flex-direction: column; gap: 12px; }
+
+.test-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: #f8f9fc;
+  border: 2px solid #e0e3ef;
+  border-radius: 10px;
+  padding: 16px 18px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color .15s, background .15s, transform .1s;
+}
+.test-card:hover {
+  border-color: #7986cb;
+  background: #f0f2ff;
+  transform: translateY(-1px);
+}
+
+.test-num {
+  background: #3f51b5;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 6px 12px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.test-info {}
+.test-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 4px;
+}
+.test-theme {
+  font-size: 0.82rem;
+  color: #3f51b5;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.test-meta {
+  font-size: 0.82rem;
+  color: #666;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.test-meta span::before { content: "・"; }
+
+.arrow {
+  margin-left: auto;
+  font-size: 1.1rem;
+  color: #aaa;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+/* 今後追加予定 */
+.test-card.coming-soon {
+  opacity: .55;
+  cursor: default;
+  pointer-events: none;
+}
+.badge-coming {
+  font-size: 0.72rem;
+  background: #e0e3ef;
+  color: #555;
+  border-radius: 99px;
+  padding: 2px 8px;
+  font-weight: 600;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.back-link-box {
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.7;
+}
+.back-link-box a {
+  color: #3f51b5;
+  text-decoration: none;
+}
+.back-link-box a:hover { text-decoration: underline; }
+.note {
+  font-size: 0.78rem;
+  color: #888;
+  margin-top: 6px;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.78rem;
+  color: #999;
+  padding: 20px;
+}
+
+@media (max-width: 480px) {
+  .card { padding: 18px 14px; }
+  .test-card { padding: 14px; gap: 12px; }
+  .test-name { font-size: 0.95rem; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>CCNA研修前ミニテスト</h1>
+  <div class="header-sub">CCNA座学予習の理解度確認用テスト集</div>
+</header>
+
+<div class="container">
+
+  <div class="card">
+    <div class="page-title">CCNA 座学予習確認テスト</div>
+    <div class="page-desc">
+      各回のテストは、CCNA研修の座学予習を終えたあとに取り組んでください。
+      採点後に正解と解説を確認できます。前後の問題に戻ることができ、全問回答後に採点できます。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">テスト一覧</div>
+    <div class="test-list">
+
+      <a class="test-card" href="./01/">
+        <div class="test-num">第1回</div>
+        <div class="test-info">
+          <div class="test-name">座学予習確認テスト 第1回</div>
+          <div class="test-theme">ネットワークとは〜TCP/IP〜Cisco操作</div>
+          <div class="test-meta">
+            <span>全10問</span>
+            <span>4択・単一選択</span>
+          </div>
+        </div>
+        <div class="arrow">›</div>
+      </a>
+
+      <a class="test-card" href="./02/">
+        <div class="test-num">第2回</div>
+        <div class="test-info">
+          <div class="test-name">座学予習確認テスト 第2回</div>
+          <div class="test-theme">VLAN・L2スイッチング</div>
+          <div class="test-meta">
+            <span>全12問</span>
+            <span>4択・単一選択</span>
+            <span>第1回の復習2問含む</span>
+          </div>
+        </div>
+        <div class="arrow">›</div>
+      </a>
+
+      <!-- 第3回以降はここに追加 -->
+      <!--
+      <a class="test-card" href="./03/">
+        <div class="test-num">第3回</div>
+        <div class="test-info">
+          <div class="test-name">座学予習確認テスト 第3回</div>
+          <div class="test-theme">テーマ名</div>
+          <div class="test-meta">
+            <span>全N問</span>
+            <span>4択・単一選択</span>
+          </div>
+        </div>
+        <div class="arrow">›</div>
+      </a>
+      -->
+
+    </div>
+  </div>
+
+  <div class="card back-link-box">
+    <strong>関連リンク</strong><br>
+    <a href="https://yamato-397.github.io/ccna-quiz-public/" target="_blank" rel="noopener noreferrer">
+      CCNA対策資料（問題演習サイト）→
+    </a>
+    <div class="note">※ CCNA対策資料と研修前ミニテストは別の教材です。研修前ミニテストは座学予習の理解度確認を目的としています。</div>
+  </div>
+
+</div>
+
+<footer>CCNA研修前ミニテスト</footer>
+
+</body>
+</html>
