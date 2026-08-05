@@ -1,0 +1,233 @@
+{
+  "id": "pre-study-03",
+  "title": "CCNA 座学予習確認テスト 第3回",
+  "theme": "Ciscoルータ・IPルーティング・OSPF",
+  "questionCount": 12,
+  "sections": {
+    "review": { "label": "第2回の復習", "count": 2 },
+    "new":    { "label": "今回の範囲",   "count": 10 }
+  },
+  "sources": [
+    { "title": "Ciscoルータをはじめから", "url": "https://www.infraexpert.com/study/study17.html" },
+    { "title": "IPルーティングをはじめから", "url": "https://www.infraexpert.com/study/study19.html" },
+    { "title": "OSPFをはじめから",        "url": "https://www.infraexpert.com/study/study30.html" }
+  ],
+  "questions": [
+    {
+      "id": "pre-study-03-001",
+      "section": "review",
+      "sectionLabel": "第2回の復習",
+      "topic": "VLANを使用する目的",
+      "question": "VLANを使用する主な目的として正しいものはどれですか？",
+      "choices": [
+        "同一スイッチの全ポートを1つのブロードキャストドメインに集約する",
+        "物理ケーブルを使用せずに無線LAN環境を構築する",
+        "スイッチ上で論理的にブロードキャストドメインを分割して通信効率や管理性を向上させる",
+        "スイッチだけで異なるVLAN間の通信を自動的に中継する"
+      ],
+      "correctIndex": 2,
+      "explanation": "VLANはスイッチ上で論理的にブロードキャストドメインを分割するために使用されます。ブロードキャストの範囲を制限して通信効率を向上させたり、部門ごとにセグメントを分けてセキュリティや管理性を改善したりできます。1台のスイッチ上だけでなく、複数台のスイッチにまたがってVLANを設定することも可能です。\n\nAはデフォルトのスイッチ動作の説明であり、VLANはむしろそれをセグメントに分割します。BはVLANではなく無線LAN技術の説明です。DはL2スイッチのみでは実現できず、異なるVLAN間の通信にはルータやL3スイッチなどのレイヤ3機能が必要です。",
+      "sourceTitle": "VLANをはじめから（infraexpert.com）",
+      "sourceUrl": "https://www.infraexpert.com/study/vlanz1.html",
+      "sourceReference": "VLAN - VLANの概要（VLANとは、VLANの特徴）"
+    },
+    {
+      "id": "pre-study-03-002",
+      "section": "review",
+      "sectionLabel": "第2回の復習",
+      "topic": "IEEE 802.1Q",
+      "question": "IEEE 802.1Qに関する説明として正しいものはどれですか？",
+      "choices": [
+        "ISLと同様にCisco独自のVLANタグ方式であり、主にCisco機器間で使用される",
+        "IEEE標準のVLANタグ方式で、EthernetフレームにVLAN識別情報を付加することで1本のリンク上で複数のVLANを識別できる",
+        "VLAN IDを8ビットで管理するため、最大255種類のVLANを識別できる",
+        "802.1Qはルータ間でのみ使用できるプロトコルであり、スイッチ間のトランクリンクには使用できない"
+      ],
+      "correctIndex": 1,
+      "explanation": "IEEE 802.1QはEthernetフレームにVLAN識別情報（VLANタグ）を付加するIEEE標準のタグ方式です。802.1Qのトランクリンクでは、1本の物理リンク上で複数のVLANのトラフィックを識別・転送できます。現在の業界標準であり、Ciscoを含む各社のスイッチが対応しています。\n\nAのISLはCisco独自の旧来のVLANタグ方式であり、802.1QはISLとは別のIEEE標準です。CはVLAN IDは12ビットで管理されており、1〜4094のVLAN IDを使用できるため誤りです。DはVLANタグはスイッチ間のトランクリンクでこそ使用するものであり、ルータ間専用ではありません。",
+      "sourceTitle": "VLANをはじめから（infraexpert.com）",
+      "sourceUrl": "https://www.infraexpert.com/study/vlanz2.html",
+      "sourceReference": "VLAN - アクセスポートとトランクポート（IEEE802.1Q / ISL）"
+    },
+    {
+      "id": "pre-study-03-003",
+      "section": "new",
+      "sectionLabel": "今回の範囲",
+      "topic": "Ciscoルータのコンソール接続",
+      "question": "Ciscoルータのコンソールポート（コンソール端子）のインターフェース形状として正しいものはどれですか？",
+      "choices": [
+        "RJ45",
+        "DB-9（RS-232）",
+        "USB Type-A",
+        "SFP（Small Form-factor Pluggable）"
+      ],
+      "correctIndex": 0,
+      "explanation": "CiscoルータのコンソールポートはRJ45形状のインターフェースです。コンソールケーブルはルータ側がRJ45、PC側がDB-9（RS-232）の形状となっています。現在のPCはDB-9ポートを持たないものが多いため、USB to RS-232変換ケーブル、またはUSB RJ45コンソールケーブルを使用してコンソール接続します。",
+      "sourceTitle": "Ciscoルータをはじめから（infraexpert.com）",
+      "sourceUrl": "https://www.infraexpert.com/study/ciscoios.html",
+      "sourceReference": "Ciscoルータ - コンソール接続（コンソールポートの形状、接続方法）"
+    },
+    {
+      "id": "pre-study-03-004",
+      "section": "new",
+      "sectionLabel": "今回の範囲",
+      "topic": "show interfacesのステータス表示",
+      "question": "show interfacesコマンドで「GigabitEthernet0/0 is administratively down, line protocol is down」と表示された場合の意味として正しいものはどれですか？",
+      "choices": [
+        "物理的なケーブルが未接続で、インターフェースがダウンしている",
+        "データリンク層でエラーが検出されて自動的に無効化されている",
+        "ネットワーク輻輳によってインターフェースが一時的に使用不可になっている",
+        "shutdownコマンドによって管理者の操作でインターフェースが無効化されている"
+      ],
+      "correctIndex": 3,
+      "explanation": "「administratively down」は、shutdownコマンドによってインターフェースが管理者によって意図的に無効化されていることを示します。「up」は物理層として正常動作、「down」はケーブル未接続などの物理的な問題でダウンしていることを意味します。「administratively down」の状態を解除するにはno shutdownコマンドを使用します。",
+      "sourceTitle": "Ciscoルータをはじめから（infraexpert.com）",
+      "sourceUrl": "https://www.infraexpert.com/study/ciscorouter4.html",
+      "sourceReference": "Ciscoルータ - show interfacesの見方（ステータス表示の意味）"
+    },
+    {
+      "id": "pre-study-03-005",
+      "section": "new",
+      "sectionLabel": "今回の範囲",
+      "topic": "show versionコマンド",
+      "question": "Ciscoルータでshow versionコマンドを実行したときに確認できる情報として最も適切なものはどれですか？",
+      "choices": [
+        "IOSのバージョン・FLASHメモリとDRAMのサイズ・ルータのアップタイム",
+        "インターフェースごとの送受信パケット統計情報と5分間平均スループット",
+        "ルーティングテーブルの宛先ネットワーク一覧とネクストホップ",
+        "VLANデータベースの設定内容と割り当てポート一覧"
+      ],
+      "correctIndex": 0,
+      "explanation": "show versionコマンドでは、Cisco IOSのバージョン情報、FLASHメモリ・DRAMのサイズ、ルータの動作時間（アップタイム）などのハードウェア・ソフトウェア情報を確認できます。\n\nBのインターフェースの統計情報はshow interfaces、Cのルーティングテーブルはshow ip route、DのVLANの情報はshow vlan briefで確認します。",
+      "sourceTitle": "Ciscoルータをはじめから（infraexpert.com）",
+      "sourceUrl": "https://www.infraexpert.com/study/ciscorouter3.html",
+      "sourceReference": "Ciscoルータ - show version/show runの見方（show versionで確認できる情報）"
+    },
+    {
+      "id": "pre-study-03-006",
+      "section": "new",
+      "sectionLabel": "今回の範囲",
+      "topic": "ルーティングの原則（宛先ルートなし）",
+      "question": "ルータがパケットを受信したとき、宛先IPアドレスに該当する経路がルーティングテーブルに存在しない場合、ルータはどのような動作をしますか？",
+      "choices": [
+        "パケットを全インターフェースからフラッディングして転送する",
+        "パケットを破棄し、送信元ホストにICMP Destination Unreachableを送信する",
+        "ルーティングテーブルを再学習するまでパケットをバッファに保持する",
+        "デフォルトゲートウェイへ無条件にパケットを転送する"
+      ],
+      "correctIndex": 1,
+      "explanation": "ルータはルーティングテーブルに宛先ネットワークが存在しないパケットを破棄します。その後、ICMPのDestination Unreachableメッセージをパケットの送信元ホストに送信して宛先へ到達不能であることを通知します。これはルーティングの原則の一つです。\n\nAのフラッディングはL2スイッチがUnknown Unicastフレームに対して行う動作であり、ルータは行いません。Cのバッファ保持は行いません。Dのデフォルトゲートウェイへの転送は、デフォルトルート（0.0.0.0/0）が設定されている場合のみ行われます。",
+      "sourceTitle": "IPルーティングをはじめから（infraexpert.com）",
+      "sourceUrl": "https://www.infraexpert.com/study/routing.html",
+      "sourceReference": "IPルーティング - ルーティングとは（ルーティングの原則その1）"
+    },
+    {
+      "id": "pre-study-03-007",
+      "section": "new",
+      "sectionLabel": "今回の範囲",
+      "topic": "ロンゲストマッチの法則",
+      "question": "複数の経路がルーティングテーブルに存在するとき、ルータがパケット転送先を決定するために使用する「ロンゲストマッチ」の説明として正しいものはどれですか？",
+      "choices": [
+        "プレフィックス長が最も短い（広い範囲の）ルートを優先して選択する",
+        "メトリック値が最も小さいルートを優先して選択する",
+        "宛先IPアドレスとのプレフィックス長が最も長く一致するルートを選択する",
+        "アドミニストレーティブディスタンス（AD）が最も小さいルートを選択する"
+      ],
+      "correctIndex": 2,
+      "explanation": "ロンゲストマッチとは、ルーティングテーブルに宛先IPアドレスに該当するルートが複数ある場合に、プレフィックス長（サブネットマスクのビット数）が最も長く一致する宛先ルートを選択するルールです。例えば172.16.0.0/16と172.16.1.0/24の両方が宛先「172.16.1.1」に該当する場合、より具体的な/24の経路が優先して選択されます。\n\nAは逆で、より長い（具体的な）プレフィックスが選択されます。Bのメトリックとレは同一プロトコル内での経路選択に使われます。DのAD値は複数プロトコル間での信頼度比較に使われます。",
+      "sourceTitle": "IPルーティングをはじめから（infraexpert.com）",
+      "sourceUrl": "https://www.infraexpert.com/study/routing.html",
+      "sourceReference": "IPルーティング - ルーティングとは（ルーティングの原則その2・ロンゲストマッチ）"
+    },
+    {
+      "id": "pre-study-03-008",
+      "section": "new",
+      "sectionLabel": "今回の範囲",
+      "topic": "スタティックルートの設定",
+      "question": "Ciscoルータでスタティックルートを設定するコマンドの書式として正しいものはどれですか？グローバルコンフィグレーションモードでの設定とします。",
+      "choices": [
+        "router static {network} {mask} {next-hop}",
+        "route add {network} {mask} {next-hop}",
+        "ip static-route {network} {mask} {next-hop}",
+        "ip route {network} {mask} {next-hop | interface}"
+      ],
+      "correctIndex": 3,
+      "explanation": "Ciscoルータでスタティックルートを設定するコマンドはグローバルコンフィグレーションモードで「ip route network mask {next-hop | interface}」です。ネクストホップとして隣接ルータのIPアドレスまたは送出インターフェースを指定します。設定例：ip route 192.168.2.0 255.255.255.0 10.0.0.2（ネクストホップIPアドレスを指定）。スタティックルートの情報は他のルータには通知されません。",
+      "sourceTitle": "IPルーティングをはじめから（infraexpert.com）",
+      "sourceUrl": "https://www.infraexpert.com/study/routing3.html",
+      "sourceReference": "IPルーティング - スタティックルーティングとは（スタティックルートの設定コマンド）"
+    },
+    {
+      "id": "pre-study-03-009",
+      "section": "new",
+      "sectionLabel": "今回の範囲",
+      "topic": "アドミニストレーティブディスタンス（AD）",
+      "question": "アドミニストレーティブディスタンス（AD）において、Ciscoルータのデフォルト設定でAD値が最も小さく、信頼度が最も高いルート情報はどれですか？",
+      "choices": [
+        "直接接続ルート（Connected）",
+        "スタティックルート",
+        "OSPFによるダイナミックルート",
+        "RIPによるダイナミックルート"
+      ],
+      "correctIndex": 0,
+      "explanation": "アドミニストレーティブディスタンス（AD）はルート情報の信頼度を示す値で、小さいほど信頼度が高くなります。Ciscoルータのデフォルトのアドミニストレーティブディスタンス値は、直接接続（Connected）が0、スタティックルートが1、OSPFが110、RIPが120です。同じ宛先ネットワークへのルートが複数ある場合、AD値が最小のルートがルーティングテーブルに登録されます。",
+      "sourceTitle": "IPルーティングをはじめから（infraexpert.com）",
+      "sourceUrl": "https://www.infraexpert.com/study/routing7.html",
+      "sourceReference": "IPルーティング - AD（アドミニストレーティブディスタンス）とは（デフォルトのAD値一覧）"
+    },
+    {
+      "id": "pre-study-03-010",
+      "section": "new",
+      "sectionLabel": "今回の範囲",
+      "topic": "OSPFのエリア分割",
+      "question": "OSPFでネットワークをエリアに分割することによるメリットとして正しいものはどれですか？",
+      "choices": [
+        "全OSPFルータが同一のLSDBを共有するため、経路情報の一貫性が向上する",
+        "LSDBサイズの縮小・SPF計算頻度の減少・ルーティングテーブルのサイズ縮小によるルータ負荷の軽減",
+        "DR/BDRの選出が不要になり、ネイバー関係の確立処理が単純化される",
+        "OSPFプロセスIDをエリアごとに一致させる必要がなくなる"
+      ],
+      "correctIndex": 1,
+      "explanation": "OSPFのエリア分割には主に3つのメリットがあります。①LSDBサイズの縮小（異なるエリアのLSAを保持しなくてよい）②SPF計算頻度の減少（トポロジ変更のLSAフラッディングをエリア内に限定）③ルーティングテーブルのサイズ縮小（エリア間で経路集約が可能）。これらによりルータのCPU・メモリ負荷を軽減できます。\n\nAは誤りで、エリア分割により異なるエリアの詳細なLSAは共有されなくなります。CDR/BDRはエリアに関係なくマルチアクセスネットワークで選出されます。DのプロセスIDはローカルルータ内の識別子であり、エリアとは無関係です。",
+      "sourceTitle": "OSPFをはじめから（infraexpert.com）",
+      "sourceUrl": "https://www.infraexpert.com/study/ospfz4.html",
+      "sourceReference": "OSPF - エリアとは、ABR/ASBRとは（エリア分割によるメリット）"
+    },
+    {
+      "id": "pre-study-03-011",
+      "section": "new",
+      "sectionLabel": "今回の範囲",
+      "topic": "OSPFのDR/BDR選出",
+      "question": "OSPFのマルチアクセスネットワーク（イーサネットなど）においてDR（Designated Router）が選出される基準として正しいものはどれですか？",
+      "choices": [
+        "メトリック（コスト）値が最も小さいルータがDRに選出される",
+        "AD値が最も小さいルータがDRに選出される",
+        "ルータIDが最も大きいルータが常にDRに選出される",
+        "OSPFプライオリティ値が最も大きいルータがDRに選出され、同値の場合はルータIDで決定される"
+      ],
+      "correctIndex": 3,
+      "explanation": "DR/BDRの選出はOSPFプライオリティ値（デフォルト1）を使用します。Helloパケット交換後の2Way状態になった時点でDR/BDRが選出され、プライオリティ値が最大のルータがDR、2番目に大きいルータがBDRになります。プライオリティ値が同じ場合にはルータIDが最も大きいルータがDRに選出されます。プライオリティ値を0に設定するとそのルータはDR/BDR選出に参加しません。\n\nAのメトリックとADはDR選出には使用しません。Cはプライオリティ値が同値の場合のみルータIDが使われるため、「常に」ルータIDで決まるわけではありません。",
+      "sourceTitle": "OSPFをはじめから（infraexpert.com）",
+      "sourceUrl": "https://www.infraexpert.com/study/ospfz7.html",
+      "sourceReference": "OSPF - DR、BDR、2wayとは（DR/BDRの選出基準）"
+    },
+    {
+      "id": "pre-study-03-012",
+      "section": "new",
+      "sectionLabel": "今回の範囲",
+      "topic": "OSPFのルータID",
+      "question": "OSPFのルータIDについて、router-idコマンドで手動設定しない場合のルータIDの自動決定ルールとして正しいものはどれですか？",
+      "choices": [
+        "OSPFを有効化した最初のインターフェースのIPアドレスがルータIDになる",
+        "アクティブなインターフェースの中でIPアドレスが最も小さいものがルータIDになる",
+        "LoopbackインターフェースのIPアドレスが優先され、なければアクティブなインターフェースの中で最も大きいIPアドレスがルータIDになる",
+        "ルータのホスト名をDNSで解決したIPアドレスがルータIDになる"
+      ],
+      "correctIndex": 2,
+      "explanation": "OSPFのルータIDは以下の優先順位で自動決定されます。①router-idコマンドで手動設定した値 ②Loopbackインターフェースに設定されたIPアドレスのうち最大値 ③Loopbackがなければアクティブなインターフェース（Loopback以外）のIPアドレスのうち最大値。ルータIDは他のOSPFルータと重複してはなりません。ルータIDを変更した場合はOSPFプロセスの再起動が必要です。",
+      "sourceTitle": "OSPFをはじめから（infraexpert.com）",
+      "sourceUrl": "https://www.infraexpert.com/study/ospfz13.html",
+      "sourceReference": "OSPF - ルータID、プライオリティ、コスト値の設定（ルータIDの自動決定ルール）"
+    }
+  ]
+}
