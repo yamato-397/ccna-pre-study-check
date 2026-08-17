@@ -1,0 +1,233 @@
+{
+  "id": "pre-study-04",
+  "title": "CCNA 座学予習確認テスト 第4回",
+  "theme": "ACL・DHCP・QoS",
+  "questionCount": 12,
+  "sections": {
+    "review": { "label": "第3回の復習", "count": 2 },
+    "new":    { "label": "今回の範囲",   "count": 10 }
+  },
+  "sources": [
+    { "title": "ACLをはじめから",  "url": "https://www.infraexpert.com/study/study33.html" },
+    { "title": "DHCPをはじめから", "url": "https://www.infraexpert.com/study/study43.html" },
+    { "title": "QoSをはじめから",  "url": "https://www.infraexpert.com/study/study65.html" }
+  ],
+  "questions": [
+    {
+      "id": "pre-study-04-001",
+      "section": "review",
+      "sectionLabel": "第3回の復習",
+      "topic": "デフォルトルート",
+      "question": "ルーティングテーブルに宛先IPアドレスに一致する経路がどれも存在しない場合にのみ使用される特殊な経路の説明として正しいものはどれですか？",
+      "choices": [
+        "直接接続ルート。ルータのインターフェースにIPアドレスを設定してno shutdownすると自動的に追加される経路",
+        "デフォルトルート。「0.0.0.0/0」で表され、他のどの経路にも一致しなかったパケットの転送先となる",
+        "フローティングスタティックルート。通常より高いAD値を設定し、主経路の障害時にのみ有効になるスタティックルート",
+        "スタティックルート。管理者が手動で設定した固定経路であり、常に最小のAD値が適用される"
+      ],
+      "correctIndex": 1,
+      "explanation": "デフォルトルートは「0.0.0.0/0（ワイルドカードマスク0.0.0.0/マスク0.0.0.0）」で表される特殊なスタティックルートです。ルーティングテーブルに宛先IPアドレスに一致する経路がどれも見つからなかった場合にのみ使用されます。「デフォルトゲートウェイ」とも呼ばれ、インターネット接続ではプロバイダ側のルータへの経路として設定されることが多いです。\n\nAの直接接続ルートはインターフェースにIPアドレスを設定してno shutdownした際に自動追加される経路です。Cのフローティングスタティックルートは主経路より高いAD値を意図的に設定したスタティックルートで、冗長性確保に使います。DはスタティックルートのAD値はデフォルト1であり「常に最小」ではなく、直接接続ルート（AD=0）より大きいです。",
+      "sourceTitle": "IPルーティングをはじめから（infraexpert.com）",
+      "sourceUrl": "https://www.infraexpert.com/study/routing3.html",
+      "sourceReference": "IPルーティング - スタティックルーティングとは（デフォルトルートの概念）"
+    },
+    {
+      "id": "pre-study-04-002",
+      "section": "review",
+      "sectionLabel": "第3回の復習",
+      "topic": "OSPFのpassive-interface",
+      "question": "Cisco IOSのOSPF設定でpassive-interfaceコマンドをあるインターフェースに設定した場合の動作として正しいものはどれですか？",
+      "choices": [
+        "そのインターフェースからOSPFのHelloパケットが送信されなくなり、そのインターフェースでは新しいネイバー関係が確立されなくなる",
+        "そのインターフェースが物理的にシャットダウンされ、ユーザトラフィックも通過しなくなる",
+        "そのインターフェースのOSPFコスト値が自動的に0になり、他の経路より常に優先される",
+        "そのインターフェースが自動的にOSPFエリア0（バックボーンエリア）に参加する"
+      ],
+      "correctIndex": 0,
+      "explanation": "passive-interfaceコマンドを設定したインターフェースからはOSPFのHelloパケットが送信されなくなります。Helloパケットがなければネイバー関係を確立できないため、そのインターフェースではOSPFネイバーが形成されません。ただし、インターフェースに接続されているネットワーク自体はOSPFのルーティング情報として引き続き通知されます。エンドデバイスのみが接続されているスタブネットワーク向けインターフェースに設定し、不要なOSPFパケットを抑制するためによく利用されます。\n\nBはシャットダウンではありません。passive-interfaceはOSPFの制御パケット送信を止めるだけで、インターフェース自体は動作します。CのOSPFコスト値は変わりません。Dのエリア0への自動参加とpassive-interfaceは無関係です。",
+      "sourceTitle": "OSPFをはじめから（infraexpert.com）",
+      "sourceUrl": "https://www.infraexpert.com/study/ospfz14.1.html",
+      "sourceReference": "OSPF - passive-interfaceとは（passive-interfaceの効果と用途）"
+    },
+    {
+      "id": "pre-study-04-003",
+      "section": "new",
+      "sectionLabel": "今回の範囲",
+      "topic": "ACLの処理順序と暗黙のdeny",
+      "question": "ACL（アクセスコントロールリスト）の動作に関する説明として正しいものはどれですか？",
+      "choices": [
+        "ACLの全エントリを上から下まで必ず評価し終えてから、最後に一致したエントリの条件を適用する",
+        "ACLの最終行に一致しなかったパケットは自動的にpermit（許可）となる",
+        "ACLの各エントリは上から順番に評価し、最初に条件に一致した時点でpermitまたはdenyが決定される。どのエントリにも一致しなかったパケットは暗黙のdenyによりすべて拒否される",
+        "1つのインターフェースのIN方向とOUT方向の両方に合計1つのACLしか適用できない"
+      ],
+      "correctIndex": 2,
+      "explanation": "ACLは各エントリを1行目から順番に評価します。あるエントリに最初に一致した時点でpermitまたはdenyが確定し、以降のエントリは評価されません。また、ACLの末尾には明示的に記述しなくても「暗黙のdeny any」が自動的に存在します。このため、どのpermitエントリにも一致しなかったパケットはすべて拒否されます。\n\nAは誤りです。「全エントリを評価し終えてから」ではなく「最初に一致した時点で決定」します。Bは暗黙のdenyの動作が逆です。どのエントリにも一致しなかったパケットはpermitではなくdenyになります。DはIN方向とOUT方向にそれぞれ1つずつ（合計2つ）のACLを適用できます。",
+      "sourceTitle": "ACLをはじめから（infraexpert.com）",
+      "sourceUrl": "https://www.infraexpert.com/study/aclz2.html",
+      "sourceReference": "ACL - 処理順序、暗黙のdeny、ACLの適用数（ACL注意事項1・2・3）"
+    },
+    {
+      "id": "pre-study-04-004",
+      "section": "new",
+      "sectionLabel": "今回の範囲",
+      "topic": "標準ACLと拡張ACLの違い",
+      "question": "標準ACLと拡張ACLの違いとして正しいものはどれですか？",
+      "choices": [
+        "標準ACLはIPv6専用のACLで、拡張ACLはIPv4専用のACLである",
+        "標準ACLは送信元・宛先IPアドレスの両方を条件として指定でき、拡張ACLは送信元IPアドレスのみを条件とする",
+        "標準ACLも拡張ACLも機能は同じだが、番号の範囲だけが異なる",
+        "標準ACLは主として送信元IPアドレスを条件としてフィルタリングし、拡張ACLは送信元・宛先IPアドレス・プロトコル・ポート番号なども条件として指定できる"
+      ],
+      "correctIndex": 3,
+      "explanation": "標準ACLはパケットの送信元IPアドレスのみを条件としてフィルタリングします（番号付き標準ACLは1〜99の番号を使用）。拡張ACLは送信元・宛先IPアドレスに加え、プロトコル番号・TCP/UDPのポート番号なども条件として指定でき、より細かい制御が可能です（番号付き拡張ACLは100〜199の番号を使用）。\n\nAはいずれも主にIPv4 ACLの説明です。Bは標準ACLと拡張ACLの機能が逆です。標準ACLは送信元IPアドレスのみ、拡張ACLが多様な条件を使えます。Cは誤りで、機能に大きな差があります。番号の範囲だけでなく、条件として指定できる情報の種類が根本的に異なります。",
+      "sourceTitle": "ACLをはじめから（infraexpert.com）",
+      "sourceUrl": "https://www.infraexpert.com/study/aclz4.html",
+      "sourceReference": "ACL - 標準ACL（番号付き標準ACLとは、送信元IPアドレスのフィルタリング）"
+    },
+    {
+      "id": "pre-study-04-005",
+      "section": "new",
+      "sectionLabel": "今回の範囲",
+      "topic": "ワイルドカードマスク",
+      "question": "ACLのワイルドカードマスクに関する説明として正しいものはどれですか？",
+      "choices": [
+        "ワイルドカードマスクの「0」はIPアドレスの対応するビットを一致確認し、「1」はそのビットを確認しないことを意味する",
+        "ワイルドカードマスクはサブネットマスクと同じルールで、「1」がネットワーク部、「0」がホスト部を表す",
+        "「any」キーワードは「0.0.0.0 0.0.0.0」と等価であり、全IPアドレスのうち1つのホストだけを対象にする",
+        "単一ホスト「192.168.1.10」のみを対象にするワイルドカードマスクは「0.0.0.255」と指定する"
+      ],
+      "correctIndex": 0,
+      "explanation": "ワイルドカードマスクでは「0」が対応するIPアドレスのビットを一致確認することを意味し、「1」はそのビットを確認しない（無視する）ことを意味します。例えば172.16.1.0/24のネットワーク全体を指定するには「172.16.1.0 0.0.0.255」と記述します（第4オクテットは全ビットが1=確認しない=任意）。\n\nBはサブネットマスクのビットの意味をワイルドカードマスクに当てはめた誤りです。両者はビットの意味が逆です。C「any」は全IPアドレスを対象にするキーワードで、「0.0.0.0 255.255.255.255」と等価です（全ビット確認しない）。「0.0.0.0 0.0.0.0」とは等価ではありません。D単一ホスト192.168.1.10を指定する場合は「192.168.1.10 0.0.0.0」または「host 192.168.1.10」です（全ビットを確認する=完全一致）。",
+      "sourceTitle": "ACLをはじめから（infraexpert.com）",
+      "sourceUrl": "https://www.infraexpert.com/study/aclz3.html",
+      "sourceReference": "ACL - ワイルドカードマスクとは（ルールと具体例・hostキーワード・anyキーワード）"
+    },
+    {
+      "id": "pre-study-04-006",
+      "section": "new",
+      "sectionLabel": "今回の範囲",
+      "topic": "ACLのインターフェース適用（ip access-group）",
+      "question": "Ciscoルータでアクセスリスト番号10のACLをインターフェースのインバウンド（IN）方向に適用するコマンドとして正しいものはどれですか？インターフェースコンフィグレーションモードでの入力とします。",
+      "choices": [
+        "(config-if)# access-list 10 apply in",
+        "(config-if)# ip access-group 10 in",
+        "(config-if)# ip access-list 10 in",
+        "(config-if)# access-group 10 inbound"
+      ],
+      "correctIndex": 1,
+      "explanation": "CiscoルータでACLをインターフェースに適用するコマンドは「ip access-group {ACL番号または名前} {in | out}」です。「in」はそのインターフェースに着信するパケット（インバウンド）へ適用し、「out」はそのインターフェースから送出するパケット（アウトバウンド）へ適用します。ACL自体はグローバルコンフィグレーションモードでaccess-listコマンドなどで作成し、インターフェースコンフィグレーションモードでip access-groupコマンドにより適用します。\n\nAの「access-list 10 apply in」は存在しないコマンドです。Cの「ip access-list 10 in」はグローバルコンフィグモードで使用する名前付きACL作成コマンドの構文に近いものですが、適用コマンドとしては使用しません。Dの「access-group 10 inbound」も正しいコマンドではありません。",
+      "sourceTitle": "ACLをはじめから（infraexpert.com）",
+      "sourceUrl": "https://www.infraexpert.com/study/aclz1.html",
+      "sourceReference": "ACL - アクセスコントロールリストとは（インターフェースへのip access-group適用例）"
+    },
+    {
+      "id": "pre-study-04-007",
+      "section": "new",
+      "sectionLabel": "今回の範囲",
+      "topic": "DHCPの役割",
+      "question": "DHCP（Dynamic Host Configuration Protocol）に関する説明として正しいものはどれですか？",
+      "choices": [
+        "DHCPはL2スイッチ専用のプロトコルで、VLANごとにIPアドレスを割り当てる専用の機能を持つ",
+        "DHCPを使用すると、一度割り当てられたIPアドレスは変更できず同じ機器に永続的に固定される",
+        "DHCPはTCPを使用するアプリケーション層プロトコルで、信頼性の高いIPアドレス割り当てを実現する",
+        "DHCPはIPアドレス・サブネットマスク・デフォルトゲートウェイ・DNSサーバアドレスなどのネットワーク設定情報をクライアントに自動的に配布するプロトコルである"
+      ],
+      "correctIndex": 3,
+      "explanation": "DHCP（Dynamic Host Configuration Protocol）は、IPアドレス・サブネットマスク・デフォルトゲートウェイ・DNSサーバアドレスなどのネットワーク設定情報をクライアントに自動的に割り当てるアプリケーション層プロトコルです。ユーザが手動でIPアドレスを設定する手間を省き、IPアドレスの集中管理が可能になります。\n\nAはDHCPがL2スイッチ専用ではありません。CiscoルータやWindowsサーバなど様々な機器がDHCPサーバとして動作できます。BはDHCPは動的割り当てであり、リース期間が設定されます。リース期間の満了や更新によってIPアドレスが変わることもあります。CはDHCPはUDP（サーバ側ポート67、クライアント側ポート68）を使用するプロトコルです。TCPではありません。",
+      "sourceTitle": "DHCPをはじめから（infraexpert.com）",
+      "sourceUrl": "https://www.infraexpert.com/study/tcpip13.html",
+      "sourceReference": "DHCPとは（DHCPの構成要素・DHCPのパケット・UDPポート67/68）"
+    },
+    {
+      "id": "pre-study-04-008",
+      "section": "new",
+      "sectionLabel": "今回の範囲",
+      "topic": "DHCPメッセージの基本シーケンス",
+      "question": "DHCPクライアントが初めてIPアドレスを取得する際のメッセージ交換の順序として正しいものはどれですか？",
+      "choices": [
+        "Request → Discover → ACK → Offer",
+        "Offer → Discover → Request → ACK",
+        "Discover → Offer → Request → ACK",
+        "ACK → Request → Offer → Discover"
+      ],
+      "correctIndex": 2,
+      "explanation": "DHCPの基本的なIPアドレス取得シーケンスは「DORA」と覚えられます。①DHCP Discover：クライアントがネットワーク上のDHCPサーバを探すためにブロードキャストで送信 ②DHCP Offer：DHCPサーバが割り当て可能なIPアドレス情報を提案 ③DHCP Request：クライアントが特定のDHCPサーバのOfferを受け入れることを要求 ④DHCP ACK：DHCPサーバがIPアドレスの割り当てを確定する。\n\n「Discover → Offer → Request → ACK（DORA）」の順序を正確に覚えましょう。A・B・Dはいずれも順序が誤っています。初回取得時はクライアントが有効なIPアドレスを持たないため、まず自身の存在を知らせるDiscoverから開始します。",
+      "sourceTitle": "DHCPをはじめから（infraexpert.com）",
+      "sourceUrl": "https://www.infraexpert.com/study/tcpip13.html",
+      "sourceReference": "DHCPとは（DHCPのパケット・Discover/Offer/Request/ACKの流れ）"
+    },
+    {
+      "id": "pre-study-04-009",
+      "section": "new",
+      "sectionLabel": "今回の範囲",
+      "topic": "DHCPリレーエージェントとip helper-address",
+      "question": "次の状況を考えてください。DHCPサーバは192.168.2.10のアドレスを持ち、クライアントは別のサブネット（192.168.1.0/24）にあります。ルータのGigabitEthernet0/0インターフェースはクライアント側のサブネット192.168.1.0/24に接続されています。DHCPリレーを実現するためのCisco IOSの設定として正しいものはどれですか？",
+      "choices": [
+        "ルータのGigabitEthernet0/0のインターフェースコンフィグモードで「ip helper-address 192.168.2.10」を設定する",
+        "DHCPサーバ（192.168.2.10）上で「ip helper-address 192.168.1.1」を設定する",
+        "ルータのグローバルコンフィグモードで「ip dhcp relay-address 192.168.2.10」を設定する",
+        "ルータのすべてのインターフェースで「ip directed-broadcast」を有効にしてブロードキャストをそのまま転送する"
+      ],
+      "correctIndex": 0,
+      "explanation": "DHCPリレーエージェント機能はDHCPクライアントが接続されているインターフェース（クライアント側インターフェース）に「ip helper-address <DHCPサーバのIPアドレス>」を設定することで有効になります。この設定により、クライアントからのDHCP Discoverブロードキャストをルータがユニキャストに変換し、別サブネットにあるDHCPサーバへ転送できます。\n\nBはip helper-addressをDHCPサーバ自身に設定するという誤りです。DHCPリレーはクライアントとDHCPサーバの中間にあるルータのクライアント側インターフェースに設定します。Cの「ip dhcp relay-address」はCisco IOSのグローバルコンフィグコマンドとして使用するDHCPリレーコマンドではありません。Dのip directed-broadcastはセキュリティリスクがあり、DHCPリレーの推奨方法ではありません。",
+      "sourceTitle": "DHCPをはじめから（infraexpert.com）",
+      "sourceUrl": "https://www.infraexpert.com/study/dhcpz2.html",
+      "sourceReference": "DHCPリレーエージェント - Ciscoコンフィグ設定（ip helper-addressの設定場所と設定方法）"
+    },
+    {
+      "id": "pre-study-04-010",
+      "section": "new",
+      "sectionLabel": "今回の範囲",
+      "topic": "QoSを使用する目的と音声トラフィックの特性",
+      "question": "QoSを使用する目的と音声トラフィックの特性について正しいものはどれですか？",
+      "choices": [
+        "QoSを実装することで物理回線そのものの最大帯域幅を増加させることができる",
+        "音声トラフィックはFTPトラフィックと同様にバースト性があり、遅延に対して鈍感なため特別なQoS処理は不要である",
+        "QoSは、音声や映像などリアルタイムトラフィックを優先処理することで、ネットワーク輻輳時にも重要なアプリケーションに必要なサービス品質を確保するために使用される",
+        "QoSは無線LAN環境のみに適用できる技術であり、有線のEthernetネットワークには適用できない"
+      ],
+      "correctIndex": 2,
+      "explanation": "QoS（Quality of Service）は、ネットワーク輻輳時に音声や映像などリアルタイムトラフィックを優先処理することで、重要なアプリケーションに必要なサービス品質（遅延・ジッター・パケットロスの抑制）を確保するために使用されます。物理回線の帯域を有効に活用する技術であり、帯域そのものを増やすものではありません。\n\nAは誤りです。QoSは物理帯域を増やすのではなく、限られた帯域の中でトラフィックを適切に制御します。Bは音声トラフィックの説明が誤りです。音声トラフィックはUDPで転送され、遅延・ジッターに非常に敏感でリアルタイム性が求められます。バースト性があるのはFTPなどのデータトラフィックの特徴です。DのQoSは有線・無線の両方に適用できます。",
+      "sourceTitle": "QoSをはじめから（infraexpert.com）",
+      "sourceUrl": "https://www.infraexpert.com/study/telephony6.html",
+      "sourceReference": "QoSとは（QoSの目的・FTPトラフィックと音声トラフィックの特性比較）"
+    },
+    {
+      "id": "pre-study-04-011",
+      "section": "new",
+      "sectionLabel": "今回の範囲",
+      "topic": "DSCPとCoSの違い",
+      "question": "QoSにおけるDSCPとCoS（Class of Service）の説明として正しいものはどれですか？",
+      "choices": [
+        "DSCPはIPヘッダとEthernetフレームヘッダの両方に存在する共通のマーキングフィールドである",
+        "CoSはすべてのEthernetフレームに必ず存在するフィールドで、L3レベルの優先度を表す",
+        "DSCPとCoSは同一のQoSマーキング技術であり、どちらも同じフィールドで同じ意味を持つ",
+        "DSCPはIPヘッダを利用したL3レベルのマーキングで、CoSはIEEE 802.1QタグのL2レベルのマーキングである"
+      ],
+      "correctIndex": 3,
+      "explanation": "DSCP（Differentiated Services Code Point）はIPヘッダ内のToSフィールドの上位6ビットを利用したL3（ネットワーク層）レベルのマーキングです。ルータやL3スイッチがパケットの優先度を識別するために参照します。一方CoS（Class of Service）はIEEE 802.1QのVLANタグヘッダに含まれるL2（データリンク層）レベルのマーキングで、L2スイッチがフレームの優先度を識別するために参照します。\n\nAのDSCPはIPヘッダにのみ存在します。EthernetフレームヘッダにはCoS（802.1Qタグ内）があります。BのCoSはIEEE 802.1QタグVLANのトランクリンクを通るフレームのみに存在し、すべてのEthernetフレームに存在するわけではありません。またL3ではなくL2のマーキングです。CのDSCPとCoSは異なるレイヤで使用される別々の技術です。",
+      "sourceTitle": "QoSをはじめから（infraexpert.com）",
+      "sourceUrl": "https://www.infraexpert.com/study/telephony7.html",
+      "sourceReference": "QoS - DiffServモデルの処理フロー（DSCPとCoSの役割・レイヤの違い）"
+    },
+    {
+      "id": "pre-study-04-012",
+      "section": "new",
+      "sectionLabel": "今回の範囲",
+      "topic": "ポリシングとシェーピングの違い",
+      "question": "QoSにおけるポリシング（Policing）とシェーピング（Shaping）の違いとして正しいものはどれですか？",
+      "choices": [
+        "ポリシングとシェーピングは名称が異なるだけで、設定レートを超えたトラフィックをキューに保持して送信タイミングを調整するという動作はまったく同じである",
+        "ポリシングは設定レートを超えたトラフィックをドロップまたは再マーキングし、シェーピングは超過トラフィックをバッファに保持して送信レートを平滑化する",
+        "シェーピングは設定レートを超えたトラフィックを即座に廃棄し、ポリシングは超過トラフィックを遅延させることで帯域を制御する",
+        "ポリシングはWANインターフェースにのみ適用でき、シェーピングはLANインターフェースにのみ適用できる"
+      ],
+      "correctIndex": 1,
+      "explanation": "ポリシング（Policing）は設定した帯域（レート）を超えたトラフィックに対して、即座にドロップや再マーキング（DSCPの書き換えなど）を行います。バッファは使用しないため追加の遅延はほとんどありません。一方シェーピング（Shaping）は超過トラフィックをバッファに一時的に蓄積し、設定レートに収まるように送信タイミングを調整して平均送信レートを整えます。バッファを使用するため遅延が発生する場合があります。\n\nAは両者の動作が全く異なります。ポリシングはバッファを使用しませんが、シェーピングはバッファを使います。Cはポリシングとシェーピングの説明が逆になっています。即座に廃棄するのはポリシングで、遅延させる（バッファ保持）のはシェーピングです。DはどちらのインターフェースにもWAN・LAN問わず適用できます。",
+      "sourceTitle": "QoSをはじめから（infraexpert.com）",
+      "sourceUrl": "https://www.infraexpert.com/study/telephony7.html",
+      "sourceReference": "QoS - DiffServモデルの処理フロー（ポリシングとシェーピングの比較）"
+    }
+  ]
+}

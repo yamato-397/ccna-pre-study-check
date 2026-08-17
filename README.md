@@ -15,6 +15,7 @@ GitHub Pagesで静的サイトとして公開しています。
 | 第1回 | https://yamato-397.github.io/ccna-pre-study-check/01/ |
 | 第2回 | https://yamato-397.github.io/ccna-pre-study-check/02/ |
 | 第3回 | https://yamato-397.github.io/ccna-pre-study-check/03/ |
+| 第4回 | https://yamato-397.github.io/ccna-pre-study-check/04/ |
 
 ---
 
@@ -29,10 +30,13 @@ ccna-pre-study-check/
 │   └── index.html          # 第2回ミニテスト
 ├── 03/
 │   └── index.html          # 第3回ミニテスト
+├── 04/
+│   └── index.html          # 第4回ミニテスト
 ├── data/
 │   ├── pre-study-check-01.json   # 第1回問題データ
 │   ├── pre-study-check-02.json   # 第2回問題データ
-│   └── pre-study-check-03.json   # 第3回問題データ
+│   ├── pre-study-check-03.json   # 第3回問題データ
+│   └── pre-study-check-04.json   # 第4回問題データ
 ├── .nojekyll               # GitHub PagesのJekyll処理を無効化
 ├── .gitignore
 └── README.md
@@ -45,18 +49,18 @@ ccna-pre-study-check/
 ### 1. 問題データを作成する
 
 ```
-data/pre-study-check-03.json
+data/pre-study-check-05.json
 ```
 
 形式は既存のJSONに合わせてください。必須フィールド：
 
 ```json
 {
-  "id": "pre-study-03",
-  "title": "CCNA 座学予習確認テスト 第3回",
+  "id": "pre-study-05",
+  "title": "CCNA 座学予習確認テスト 第5回",
   "questions": [
     {
-      "id": "pre-study-03-001",
+      "id": "pre-study-05-001",
       "section": "new",
       "sectionLabel": "今回の範囲",
       "question": "問題文",
@@ -69,23 +73,32 @@ data/pre-study-check-03.json
 }
 ```
 
+`section` フィールドは `"review"`（復習問題）または `"new"`（今回の新規範囲）を使用してください。
+
 ### 2. HTMLページを作成する
 
-`02/index.html` をコピーして `03/index.html` を作成し、先頭のCONFIG部分を変更します：
+`04/index.html` をコピーして `05/index.html` を作成し、先頭のCONFIG部分を変更します：
 
 ```js
-const JSON_PATH = '../data/pre-study-check-03.json';
+const JSON_PATH = '../data/pre-study-check-05.json';
 ```
+
+また、以下の文字列を第4回→第5回に合わせて更新してください：
+- タイトルタグ・h1・start-title・start-theme の「第4回」「ACL・DHCP・QoS」
+- section-breakdown の「第3回の復習」→「第4回の復習」
+- source-box のリンク（今回の新規範囲のURL）
+- scoreTest() の breakdownEl.innerHTML 内の「第3回の復習」→「第4回の復習」
+- renderDetailList() のフォールバック文字列「第3回の復習」→「第4回の復習」
 
 ### 3. 一覧ページにリンクを追加する
 
-`index.html` のコメントアウトされた第3回の部分を参考に追加してください。
+`index.html` の `<!-- 第5回以降はここに追加 -->` コメントの前に追加してください。
 
 ### 4. コミットしてpush
 
 ```bash
-git add 03/index.html data/pre-study-check-03.json index.html
-git commit -m "add pre-study check test 03"
+git add 05/index.html data/pre-study-check-05.json index.html README.md
+git commit -m "add pre-study check test 05"
 git push origin main
 ```
 
